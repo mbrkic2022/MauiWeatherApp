@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="MauiWeather.Views.WeatherView"
+             Title="WeatherView">
+    <Grid Margin="15"
+          RowDefinitions=".1*, .05*, .5*, .1*, .25*">
+        <Grid>
+            <Frame/>
+            <SearchBar x:Name="searchBar"
+                       Placeholder="Search"
+                       VerticalOptions="Center"/>
+        </Grid>
+        <VerticalStackLayout Grid.Row="1"
+                             Style="{StaticResource MainStackLayout}">
+            <Label Style="{StaticResource Title}" Text="New York"/>
+            <Label Text="19-04-2024"/>
+        </VerticalStackLayout>
+        <skia:SKLottieView Grid.Row="2"
+                           RepeatCount="-1"
+                           Source="storm.json"/>
+        <Grid Grid.Row="3" ColumnDefinitions="*, *, *">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 Spacing="10">
+                <Label Style="{StaticResource WeatherTitle}" Text="Temp"/>
+                <Label Style="{StaticResource WeatherValue}" Text="24°C"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1"
+                HorizontalOptions="Center"
+                                 Spacing="10">
+                <Label Style="{StaticResource WeatherTitle}" Text="Wind"/>
+                <Label Style="{StaticResource WeatherValue}" Text="25Km/h"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center"
+                                 Spacing="10">
+                <Label Style="{StaticResource WeatherTitle}" Text="Weather"/>
+                <Label Style="{StaticResource WeatherValue}" Text="Storm"/>
+            </VerticalStackLayout>
+        </Grid>
+        <CollectionView Grid.Row="4">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <VerticalStackLayout>
+                            <skia:SKLottieView IsAnimationEnabled="False"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Source="mist.json"/>
+                            <Label Text="20-04-2024"/>
+                            <Label Text="30°C"/>
+                            <Label Text="Rainy"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
